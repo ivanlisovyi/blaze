@@ -1,0 +1,52 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "BigInt",
+        "repositoryURL": "https://github.com/attaswift/BigInt",
+        "state": {
+          "branch": null,
+          "revision": "2bbb8a7addeb79ceccf45acac9f6e2a07cbe9680",
+          "version": "5.1.0"
+        }
+      },
+      {
+        "package": "CryptoSwift",
+        "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
+        "state": {
+          "branch": null,
+          "revision": "39f08ac5269361a50c08ce1e2f41989bfc4b1ec8",
+          "version": "1.3.1"
+        }
+      },
+      {
+        "package": "Auth",
+        "repositoryURL": "https://github.com/googleapis/google-auth-library-swift",
+        "state": {
+          "branch": null,
+          "revision": "7b1c9cd4ffd8cb784bcd8b7fd599794b69a810cf",
+          "version": "0.5.2"
+        }
+      },
+      {
+        "package": "swift-argument-parser",
+        "repositoryURL": "https://github.com/apple/swift-argument-parser",
+        "state": {
+          "branch": null,
+          "revision": "15351c1cd009eba0b6e438bfef55ea9847a8dc4a",
+          "version": "0.3.0"
+        }
+      },
+      {
+        "package": "swift-nio",
+        "repositoryURL": "https://github.com/apple/swift-nio.git",
+        "state": {
+          "branch": null,
+          "revision": "cf6f2b1807219643270616e03de697b96c46384c",
+          "version": "2.21.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
