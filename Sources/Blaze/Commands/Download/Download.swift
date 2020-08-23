@@ -21,9 +21,14 @@ struct Download: ParsableCommand {
   var overwrite: Bool = false
   
   func run() throws {
-    let downloader = FirebaseConfigDownloader(credentialsPath: credentialsPath)
+    if FileManager.default.fileExists(atPath: outputPath) && !overwrite {
+      return
+    }
+    
+    let downloader = RemoteConfigDownloader(credentialsPath: credentialsPath)
     let result = try downloader.download()
     
-    print(result, outputPath, overwrite)
+    let writer = SimpleConfigWriter()
+    try writer.write(result, to: outputPath)
   }
 }
