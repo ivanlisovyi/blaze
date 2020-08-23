@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 import OAuth2
 
@@ -19,9 +18,7 @@ protocol ConfigDownloader {
   func download() throws -> Data
 }
 
-final class RemoteConfigDownloader: ConfigDownloader {
-  private var cancellables = Set<AnyCancellable>()
-  
+struct RemoteConfigDownloader: ConfigDownloader {
   let credentialsPath: String
   
   init(credentialsPath: String)  {

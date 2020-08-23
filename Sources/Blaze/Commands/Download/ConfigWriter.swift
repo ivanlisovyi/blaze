@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 protocol ConfigWriter {
   func write(_ data: Data, to path: String) throws
