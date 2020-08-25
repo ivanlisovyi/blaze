@@ -25,22 +25,24 @@ struct Download: ParsableCommand {
   @Flag(help: "Whether the file shall be overwritten if it already exists. Default to false.")
   var overwrite: Bool = false
   
-  @Option(name: .shortAndLong, help: "The transformer used on the downloaded data. Availables transformers - none, flattening. Defaults to none.")
-  var transformer: Transformer = .none
+  @Option(name: .shortAndLong, help: "The transform used on the downloaded data. Availables transforms - none, flattening. Defaults to none.")
+  var transform: Transformer = .none
   
   func run() throws {
     if FileManager.default.fileExists(atPath: outputPath) && !overwrite {
       return
     }
     
-    let downloader = RemoteConfigDownloader(credentialsPath: credentialsPath)
-    var result = try downloader.download()
+    let credentialsProvider = try CredentialsProvider(path: credentialsPath)
+    let tokenProvider = try SessionTokenProvider(data: credentialsProvider.rawData)
+    let session = Session(tokenProvider: tokenProvider, credentials: credentialsProvider.credentials)
     
-    if let transformer = ConfigOutputTransformerFactory.makeTransformer(for: transformer) {
-      result = try transformer.transform(result)
-    }
-
-    let writer = SimpleConfigWriter()
+    let downloader = RemoteConfigDownloader(session: session)
+    let result = try downloader.download()
+    
+    let transformer = ConfigOutputTransformerFactory.makeTransformer(for: transform)
+ 
+    let writer = SimpleConfigWriter(transformer: transformer)
     try writer.write(result, to: outputPath)
   }
 }

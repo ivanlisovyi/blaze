@@ -12,7 +12,18 @@ protocol ConfigWriter {
 }
 
 struct SimpleConfigWriter: ConfigWriter {
+  let transformer: ConfigOutputTransformer?
+  
+  init(transformer: ConfigOutputTransformer? = nil) {
+    self.transformer = transformer
+  }
+  
   func write(_ data: Data, to path: String) throws {
-    try data.write(to: URL(fileURLWithPath: path))
+    var output = data
+    if let transformer = transformer {
+      output = try transformer.transform(data)
+    }
+    
+    try output.write(to: URL(fileURLWithPath: path))
   }
 }

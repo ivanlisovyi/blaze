@@ -10,17 +10,21 @@ import Foundation
 import OAuth2
 
 final class Session: SessionProtocol {
-  let tokenProvider: TokenProvider
-  let url: String
+  var url: String {
+    "https://firebaseremoteconfig.googleapis.com/v1/projects/\(credentials.projectId)/remoteConfig"
+  }
   
-  init(tokenProvider: TokenProvider, url: String) {
+  let tokenProvider: TokenProvider
+  let credentials: Credentials
+  
+  init(tokenProvider: TokenProvider, credentials: Credentials) {
     self.tokenProvider = tokenProvider
-    self.url = url
+    self.credentials = credentials
   }
   
   func download(completion: @escaping (Result<Data, Error>) -> Void) throws {
-    let connection = Connection(provider: self.tokenProvider)
-    try connection.performRequest(method: "GET", urlString: self.url) { (data, response, error) in
+    let connection = Connection(provider: tokenProvider)
+    try connection.performRequest(method: "GET", urlString: url) { (data, response, error) in
       
       if let data = data {
         completion(.success(data))
