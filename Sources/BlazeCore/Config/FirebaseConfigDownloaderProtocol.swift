@@ -7,18 +7,18 @@
 
 import Foundation
 
-enum ConfigDownloaderError: Error {
+enum FirebaseConfigDownloaderError: Error {
   case timeout
 }
 
-protocol ConfigDownloader {
+protocol FirebaseConfigDownloaderProtocol {
   func download() throws -> Data
 }
 
-struct RemoteConfigDownloader: ConfigDownloader {
-  let session: SessionProtocol
+struct FirebaseConfigDownloader: FirebaseConfigDownloaderProtocol {
+  let session: FirebaseClientProtocol
   
-  init(session: SessionProtocol)  {
+  init(session: FirebaseClientProtocol)  {
     self.session = session
   }
   
@@ -28,13 +28,13 @@ struct RemoteConfigDownloader: ConfigDownloader {
     
     var receivedResult: Result<Data, Error>!
 
-    try session.download(completion: { result in
+    session.download(completion: { result in
       receivedResult = result
       dispatchGroup.leave()
     })
     
     if dispatchGroup.wait(timeout: DispatchTime.distantFuture) == .timedOut {
-      throw ConfigDownloaderError.timeout
+      throw FirebaseConfigDownloaderError.timeout
     }
     
     return try receivedResult.get()

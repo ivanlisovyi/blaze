@@ -1,5 +1,5 @@
 //
-//  SessionTokenProvider.swift
+//  FirebaseTokenProvider.swift
 //  
 //
 //  Created by Lisovyi, Ivan on 25.08.20.
@@ -13,7 +13,7 @@ enum SessionTokenProviderError: Error {
   case invalidCredentialsData
 }
 
-final class SessionTokenProvider: TokenProvider {
+final class FirebaseTokenProvider: TokenProvider {
   static let defaultScopes = ["https://www.googleapis.com/auth/firebase.remoteconfig"]
   
   let `internal`: TokenProvider

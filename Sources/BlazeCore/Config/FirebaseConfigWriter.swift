@@ -1,5 +1,5 @@
 //
-//  ConfigWriter.swift
+//  FirebaseConfigWriter.swift
 //  
 //
 //  Created by Lisovyi, Ivan on 23.08.20.
@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol ConfigWriter {
+protocol FirebaseConfigWriter {
   func write(_ data: Data, to path: String) throws
 }
 
-struct SimpleConfigWriter: ConfigWriter {
-  let transformer: ConfigOutputTransformer?
+struct FirebaseSimpleConfigWriter: FirebaseConfigWriter {
+  let transformer: FirebaseConfigOutputTransformer?
   
-  init(transformer: ConfigOutputTransformer? = nil) {
+  init(transformer: FirebaseConfigOutputTransformer? = nil) {
     self.transformer = transformer
   }
   

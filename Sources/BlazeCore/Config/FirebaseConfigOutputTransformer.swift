@@ -1,5 +1,5 @@
 //
-//  ConfigOutputTransformer.swift
+//  FirebaseConfigOutputTransformer.swift
 //  
 //
 //  Created by Lisovyi, Ivan on 23.08.20.
@@ -7,28 +7,28 @@
 
 import Foundation
 
-enum ConfigOutputTransformerError: Error {
+enum FirebaseConfigOutputTransformerError: Error {
   case dataIsNotValidJSON
 }
 
-protocol ConfigOutputTransformer {
+protocol FirebaseConfigOutputTransformer {
   func transform(_ data: Data) throws -> Data
 }
 
-struct DefaultValueFlatteningTransformer: ConfigOutputTransformer {
+struct FirebaseDefaultValueFlatteningTransformer: FirebaseConfigOutputTransformer {
   typealias AnyDictionary = [String: Any]
   
   func transform(_ data: Data) throws -> Data {
     guard let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? AnyDictionary else {
-      throw ConfigOutputTransformerError.dataIsNotValidJSON
+      throw FirebaseConfigOutputTransformerError.dataIsNotValidJSON
     }
     
     let result = extractValues(from: json)
-
+    
     return try JSONSerialization.data(withJSONObject: result, options: .sortedKeys)
   }
   
-  func extractValues(from dictionary: AnyDictionary) -> AnyDictionary {
+  private func extractValues(from dictionary: AnyDictionary) -> AnyDictionary {
     var result = AnyDictionary()
     dictionary.forEach { key, value in
       if key == "parameters", let parameters = value as? AnyDictionary{
@@ -41,7 +41,7 @@ struct DefaultValueFlatteningTransformer: ConfigOutputTransformer {
     return result
   }
   
-  func extractDefaultValue(from nestedDictionary: Any) -> Any? {
+  private func extractDefaultValue(from nestedDictionary: Any) -> Any? {
     guard let dictionaryValue = nestedDictionary as? AnyDictionary, let defaultValue = dictionaryValue["defaultValue"] as? AnyDictionary else {
       return nil
     }
@@ -50,7 +50,7 @@ struct DefaultValueFlatteningTransformer: ConfigOutputTransformer {
   }
 }
 
-extension Dictionary where Key == String, Value == Any {
+private extension Dictionary where Key == String, Value == Any {
   mutating func merge(_ other: Dictionary<Key, Value>) {
     merge(other, uniquingKeysWith: { first, second in first })
   }

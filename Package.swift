@@ -1,11 +1,11 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.3
 
 import PackageDescription
 
 let package = Package(
   name: "Blaze",
   platforms: [
-      .macOS(.v10_15)
+    .macOS(.v10_13)
   ],
   products: [
     .executable(name: "blaze", targets: ["Blaze"])
@@ -18,11 +18,21 @@ let package = Package(
     .target(
       name: "Blaze",
       dependencies: [
+        "BlazeCore"
+      ]
+    ),
+    .target(
+      name: "BlazeCore",
+      dependencies: [
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
         .product(name: "OAuth2",  package: "Auth")
-      ]),
+      ]
+    ),
     .testTarget(
       name: "BlazeTests",
-      dependencies: ["Blaze"]),
+      dependencies: [
+        "BlazeCore"
+      ]
+    ),
   ]
 )

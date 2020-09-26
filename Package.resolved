@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/attaswift/BigInt",
         "state": {
           "branch": null,
-          "revision": "2bbb8a7addeb79ceccf45acac9f6e2a07cbe9680",
-          "version": "5.1.0"
+          "revision": "e1f28276687d7661cbb2754771bd9fc281784e32",
+          "version": "5.2.0"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
         "state": {
           "branch": null,
-          "revision": "39f08ac5269361a50c08ce1e2f41989bfc4b1ec8",
-          "version": "1.3.1"
+          "revision": "af1b58fc569bfde777462349b9f7314b61762be0",
+          "version": "1.3.2"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/googleapis/google-auth-library-swift",
         "state": {
           "branch": null,
-          "revision": "7b1c9cd4ffd8cb784bcd8b7fd599794b69a810cf",
-          "version": "0.5.2"
+          "revision": "4b510d91fc74f1415eae6dabc9836b8c3e1f44f6",
+          "version": "0.5.3"
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/apple/swift-argument-parser",
         "state": {
           "branch": null,
-          "revision": "15351c1cd009eba0b6e438bfef55ea9847a8dc4a",
-          "version": "0.3.0"
+          "revision": "92646c0cdbaca076c8d3d0207891785b3379cbff",
+          "version": "0.3.1"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio.git",
         "state": {
           "branch": null,
-          "revision": "cf6f2b1807219643270616e03de697b96c46384c",
-          "version": "2.21.0"
+          "revision": "96db8838be60fcbb993fa738e1120fb7f4b99c43",
+          "version": "2.22.1"
         }
       }
     ]

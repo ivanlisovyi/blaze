@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Credentials: Codable {
+struct FirebaseCredentials: Codable {
   let projectId: String
 }

@@ -1,5 +1,5 @@
 //
-//  CredentialsProvider.swift
+//  FirebaseCredentialsProvider.swift
 //  
 //
 //  Created by Lisovyi, Ivan on 25.08.20.
@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol CredentialsProviderProtocol {
-  var credentials: Credentials { get }
+protocol FirebaseCredentialProviding {
+  var credentials: FirebaseCredentials { get }
   
   var rawData: Data { get }
 }
 
-struct CredentialsProvider: CredentialsProviderProtocol {
-  let credentials: Credentials
+struct FirebaseCredentialsProvider: FirebaseCredentialProviding {
+  let credentials: FirebaseCredentials
   let rawData: Data
   
   init(path: String) throws {
@@ -24,6 +24,6 @@ struct CredentialsProvider: CredentialsProviderProtocol {
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
     
-    credentials = try decoder.decode(Credentials.self, from: data)
+    credentials = try decoder.decode(FirebaseCredentials.self, from: data)
   }
 }
