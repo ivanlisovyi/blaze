@@ -11,7 +11,9 @@ struct FirebaseConfigOutputTransformerFactory {
   static func makeTransformer(for option: Download.Transform) -> FirebaseConfigOutputTransformer? {
     switch option {
     case .flattening:
-      return FirebaseDefaultValueFlatteningTransformer()
+      return FirebaseFlattenedJsonTransformer()
+    case .plist:
+      return FirebaseFlattenedPlistTransformer()
     default:
       return nil
     }

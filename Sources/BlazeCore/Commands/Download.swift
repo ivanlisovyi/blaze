@@ -12,6 +12,7 @@ struct Download: ParsableCommand {
   enum Transform: String, ExpressibleByArgument {
     case none
     case flattening
+    case plist
   }
   
   static var configuration = CommandConfiguration(commandName: "download", abstract: "Download Remote Config values from Firebase and dump these values into a json file.")
