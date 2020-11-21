@@ -20,6 +20,7 @@ final class FirebaseConfigOutputTransformerFactoryTests: XCTestCase {
     
     // Then
     XCTAssertNotNil(transformer)
+    XCTAssertTrue(transformer is FirebaseFlattenedJsonTransformer)
   }
   
   func testMakeTransformer_whenTransformIsNone_shallReturnNil() {
@@ -31,5 +32,17 @@ final class FirebaseConfigOutputTransformerFactoryTests: XCTestCase {
     
     // Then
     XCTAssertNil(transformer)
+  }
+
+  func testMakeTransformer_whenTransformIsPlist_shallReturnFlatteningPlistTransformer() {
+    // Given
+    let transform = Download.Transform.plist
+
+    // When
+    let transformer = FirebaseConfigOutputTransformerFactory.makeTransformer(for: transform)
+
+    // Then
+    XCTAssertNotNil(transformer)
+    XCTAssertTrue(transformer is FirebaseFlattenedPlistTransformer)
   }
 }
