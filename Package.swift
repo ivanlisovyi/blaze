@@ -11,8 +11,8 @@ let package = Package(
     .executable(name: "blaze", targets: ["Blaze"])
   ],
   dependencies: [
-    .package(url: "https://github.com/apple/swift-argument-parser", from: "0.3.0"),
-    .package(name: "Auth", url: "https://github.com/googleapis/google-auth-library-swift", from: "0.5.2")
+    .package(url: "https://github.com/apple/swift-argument-parser", from: "1.0.1"),
+    .package(name: "Auth", url: "https://github.com/googleapis/google-auth-library-swift", from: "0.5.3")
   ],
   targets: [
     .target(
